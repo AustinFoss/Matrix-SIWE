@@ -124,7 +124,7 @@ This step installs Let's Encrypt, NGINX, PostgreSQL, & Docker
 1. Update system with new repositories and install new packages.
     ```
     sudo apt update && \
-    sudo apt install nginx-full postgres docker-ce docker-ce-cli containerd.io docker-compose-plugin certbot python3-certbot-nginx
+    sudo apt install nginx-full postgresql docker-ce docker-ce-cli containerd.io docker-compose-plugin certbot python3-certbot-nginx
     ```
 1. Setup HTTPS traffic to the default NGINX landing page.
     ```
@@ -351,6 +351,11 @@ You can also host your own Element web client. This is beneficial for congestion
 
         location / {
             try_files $uri $uri/ =404;
+
+            add_header X-Frame-Options SAMEORIGIN;
+            add_header X-Content-Type-Options nosniff;
+            add_header X-XSS-Protection "1; mode=block";
+            add_header Content-Security-Policy "frame-ancestors 'none'";
         }
 
     }" > /etc/nginx/sites-available/element.<your_domain>.<tld>
@@ -410,5 +415,5 @@ Now that all of the infrastructure is set up we can enable signing in with SIWE.
     ```
 1. If you received no errors you should now be able to sign-in using SIWE to create your first admin user.
     - NOTE: Only MetaMask works with this configuration. Some API keys need to be added for the other options to function.
-    
+
 ### **5. Matrix Appservice Discord Bridge**
