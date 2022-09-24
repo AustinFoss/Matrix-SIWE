@@ -185,7 +185,8 @@ SIWE provides a prebuilt docker image that gives us a very easy to use Docker im
     ```
 1. Enable the new configuration file by creating a symbolic link to it in the `/etc/nginx/sites-enabled/` directory, enable HTTPS with certbot, and restart NGINX.
     ```
-    sudo ln -s /etc/nginx/sites-available/siwe.<your_domain>.com \ /etc/nginx/sites-enabled/ && \
+    sudo ln -s /etc/nginx/sites-available/siwe.<your_domain>.com \
+    /etc/nginx/sites-enabled/ && \
     sudo certbot --nginx -d siwe.<your_domain>.com
     ```
 1. You should now be able to see your SIWE page when navigating to `siwe.<your_domain>.com` in your browser.
