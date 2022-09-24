@@ -1,0 +1,23 @@
+server {
+    server_name siwe.<your_domain>.<tld>;
+
+    location / {
+
+        #location = /register {
+        #    allow XXX.XXX.XXX.XXX;
+        #    deny all;
+        #
+        #    proxy_pass http://localhost:8000;
+        #}
+
+        #location = /.well-known/openid-configuration {
+        #    allow XXX.XXX.XXX.XXX;
+        #    deny all;
+        #
+        #    proxy_pass http://localhost:8000;
+        #}
+
+        proxy_pass http://localhost:8000;
+
+    }
+}
